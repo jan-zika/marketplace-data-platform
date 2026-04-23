@@ -57,7 +57,7 @@ ORDER BY OrderMonth;
 SELECT 
     order_status, 
     COUNT(*) AS TotalOrders
-FROM orders_dataset
+FROM orders
 WHERE order_status != 'delivered'
 GROUP BY order_status
-ORDER BY TotalOrders DESC;;
+ORDER BY TotalOrders DESC;
