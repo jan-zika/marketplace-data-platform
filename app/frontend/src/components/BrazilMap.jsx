@@ -5,9 +5,13 @@ import {
 } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-const TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-const ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>'
+// Esri Canvas basemaps: free with attribution, no API key. Base and labels are separate layers.
+const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/'
+const TILES = {
+  dark:  [ESRI + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',  ESRI + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}'],
+  light: [ESRI + 'World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', ESRI + 'World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}'],
+}
+const ATTR = 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors'
 
 const BRAZIL_CENTER = [-14.2, -51.9]
 const BRAZIL_ZOOM   = 4
@@ -187,7 +191,8 @@ export default function BrazilMap({
           style={{ height: '100%', width: '100%' }}
           boxZoom={false}
         >
-          <TileLayer attribution={ATTR} url={darkMode ? TILE_DARK : TILE_LIGHT} key={darkMode ? 'dark' : 'light'} />
+          <TileLayer attribution={ATTR} url={TILES[darkMode ? 'dark' : 'light'][0]} key={darkMode ? 'dark' : 'light'} maxZoom={16} />
+          <TileLayer url={TILES[darkMode ? 'dark' : 'light'][1]} key={darkMode ? 'dark-labels' : 'light-labels'} maxZoom={16} />
           <MapResizer containerRef={mapRef} />
           <FlyToSelected cities={cities} selectedOrder={selectedOrder} />
           <DragTooltipClearer />
