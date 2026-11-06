@@ -194,6 +194,7 @@ export default function App() {
         display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0, flexWrap: 'wrap',
       }}>
         <span style={{ fontWeight: 700, fontSize: '15px' }}>🇧🇷 Marketplace trade routes</span>
+        <span style={{ color: 'var(--color-muted)', fontSize: '11px' }} title="Brazilian e-commerce public dataset by Olist, 2016 to 2018">Data: Olist public dataset</span>
         <span style={{ color: 'var(--color-muted)', fontSize: '12px' }}>
           {loading ? 'Loading…' : error ? `Error: ${error}` : `${cities.length} cities · ${routes.length} routes`}
         </span>
