@@ -2,3 +2,17 @@
   base    = "app/frontend"
   command = "npm install && npm run build"
   publish = "dist"
+
+# marketplace.df1.io is the primary domain since 2026-11-06 (df1-io decision D6); the old names answer
+# with a permanent redirect, path kept.
+[[redirects]]
+  from = "https://olist-db.df1.io/*"
+  to = "https://marketplace.df1.io/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://olist-db.janzika.com/*"
+  to = "https://marketplace.df1.io/:splat"
+  status = 301
+  force = true
