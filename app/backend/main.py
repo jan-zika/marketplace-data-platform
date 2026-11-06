@@ -1,5 +1,5 @@
 """
-FastAPI backend for Marketplace trade routes map.
+FastAPI backend for the marketplace trade routes map.
 Connects to local SQL Server (YAHN_DESKTOP) via Windows Authentication.
 Switch CONN_STR to the Azure variant when migrating to cloud.
 """
@@ -8,15 +8,24 @@ from __future__ import annotations
 import unicodedata
 from collections import defaultdict
 
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pyodbc
 
-# Local SQL Server — Windows Authentication, no password needed
+# Local SQL Server — Windows Authentication, no password needed. The database name comes from LOCAL_DB_NAME in the
+# repo's .env (see .env.example); a missing name stops the start instead of connecting to a default.
+load_dotenv(Path(__file__).parent.parent.parent / ".env")
+LOCAL_DB_NAME = os.environ.get("LOCAL_DB_NAME")
+if not LOCAL_DB_NAME:
+    raise RuntimeError("Set LOCAL_DB_NAME in the repo's .env to the local SQL Server database name")
 CONN_STR = (
     "DRIVER={ODBC Driver 18 for SQL Server};"
     "SERVER=YAHN_DESKTOP;"
-    "DATABASE=marketplace;"
+    f"DATABASE={LOCAL_DB_NAME};"
     "Trusted_Connection=yes;"
     "Encrypt=no;"
     "Connection Timeout=30;"

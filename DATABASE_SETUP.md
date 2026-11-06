@@ -51,8 +51,8 @@ A read-only SQL login (its name is in the table below) was created with `SELECT`
 | Setting | Value |
 |---|---|
 | Server | cap2761c-zika-305.database.windows.net |
-| Database | olist-db |
-| Username | olist_reader |
+| Database | olist-db (resource name kept from the 2026 class setup) |
+| Username | olist_reader (kept from the 2026 class setup) |
 | Auth | SQL Server authentication |
 
 Password is shared with team members directly and stored in a local `.env` file (not committed to this repository).

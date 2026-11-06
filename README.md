@@ -10,7 +10,7 @@
 
 ## About the Dataset
 
-This project uses the [Olist E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), covering 2016–2018 with orders, customers, sellers, products, payments, and reviews across 11 tables and ~1.56 million rows.
+Source: the Brazilian E-Commerce Public Dataset by Olist ([Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), CC BY-NC-SA 4.0), credited here as its license requires. It covers 2016–2018 with orders, customers, sellers, products, payments, and reviews across 11 tables and ~1.56 million rows.
 
 | Table | Rows | Description |
 |---|---|---|

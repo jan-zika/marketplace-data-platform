@@ -3,8 +3,8 @@
   command = "npm install && npm run build"
   publish = "dist"
 
-# marketplace.df1.io is the primary domain since 2026-11-06 (df1-io decision D6); the old names answer
-# with a permanent redirect, path kept.
+# marketplace.df1.io is the primary domain since 2026-11-06 (df1-io decision D6). The two hostnames below are the
+# project's former addresses, kept only so old links answer with a permanent redirect, path kept.
 [[redirects]]
   from = "https://olist-db.df1.io/*"
   to = "https://marketplace.df1.io/:splat"
