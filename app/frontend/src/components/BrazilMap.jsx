@@ -308,7 +308,8 @@ export default function BrazilMap({
             display: 'inline-block', width: '60px', height: '10px', borderRadius: '3px',
             background: 'linear-gradient(to right, hsl(220,80%,45%), hsl(110,90%,50%), hsl(0,100%,50%))',
           }} />
-          <span style={{ color: 'var(--color-muted)' }}>{activeLayer.replace(/_/g, ' ')} low→high</span>
+          {/* Phones: the header already names the metric, so the legend stays on one line next to the theme button */}
+          <span style={{ color: 'var(--color-muted)' }}>{mobile ? 'low → high' : `${activeLayer.replace(/_/g, ' ')} low→high`}</span>
         </span>
         <span style={{ marginLeft: 'auto' }}>
           <button onClick={() => setDarkMode(d => !d)} style={mobile ? { fontSize: '13px', padding: '0 12px', minHeight: 44 } : { fontSize: '11px', padding: '2px 8px' }}>
