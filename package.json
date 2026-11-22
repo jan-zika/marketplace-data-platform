@@ -1,0 +1,16 @@
+{
+  "name": "marketplace-data-platform",
+  "private": true,
+  "description": "Cloudflare Worker tooling for the trade route map; the app itself lives in app/frontend.",
+  "scripts": {
+    "build": "npm --prefix app/frontend ci && npm --prefix app/frontend run build",
+    "dev:cf": "npm run build && wrangler dev",
+    "deploy:cf": "npm run build && wrangler deploy"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "wrangler": "4.125.0"
+  }
+}

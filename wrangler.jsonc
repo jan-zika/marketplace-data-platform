@@ -1,0 +1,17 @@
+// Cloudflare Worker for marketplace.df1.io: static assets only, no script.
+// It replaces the Netlify site `marketplace-data-platform`; the cutover steps are in README.md, "Deploying to Cloudflare".
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "marketplace-data-platform",
+  "compatibility_date": "2026-08-27",
+  // No *.workers.dev address and no preview URLs: the app is served only on its own domain.
+  "workers_dev": false,
+  "preview_urls": false,
+  // Routes are added at cutover: { "pattern": "marketplace.df1.io", "custom_domain": true }
+  "assets": {
+    // Vite build output (npm run build). Netlify had no SPA fallback and the app has one page, so unknown paths
+    // stay 404 (the default "none").
+    "directory": "./app/frontend/dist",
+    "not_found_handling": "none"
+  }
+}

@@ -11,3 +11,7 @@ app/backend/*.pyc
 
 # Runtime
 app/.running_pids
+
+# Root tooling (wrangler)
+/node_modules/
+.wrangler/
