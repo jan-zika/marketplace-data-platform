@@ -7,7 +7,8 @@
   // No *.workers.dev address and no preview URLs: the app is served only on its own domain.
   "workers_dev": false,
   "preview_urls": false,
-  // Routes are added at cutover: { "pattern": "marketplace.df1.io", "custom_domain": true }
+  // The custom domain since the cutover from Netlify on 2026-11-22.
+  "routes": [{ "pattern": "marketplace.df1.io", "custom_domain": true }],
   "assets": {
     // Vite build output (npm run build). Netlify had no SPA fallback and the app has one page, so unknown paths
     // stay 404 (the default "none").
