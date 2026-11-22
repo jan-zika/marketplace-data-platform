@@ -1,14 +1,22 @@
+/* Palette from the DF1 brand kit (df1-io brand_identity/03-color-and-tokens/df1-tokens.css, 2026-11-22).
+   Metric colors are kit colors (or a lighter tint of one) that keep at least 4.5:1 contrast as text on the
+   surface and on the active button. */
 :root {
-  --color-bg:       #0f1117;
-  --color-surface:  #1a1f2e;
-  --color-border:   #2d3748;
-  --color-text:     #e2e8f0;
-  --color-muted:    #718096;
-  --color-subtle:   #a0aec0;
-  --color-blue:     #63b3ed;
-  --color-orange:   #f6ad55;
-  --color-green:    #68d391;
-  --color-purple:   #b794f4;
+  --color-bg:       #131A2A; /* obsidian navy */
+  --color-surface:  #1E253F; /* midnight slate */
+  --color-border:   #2F3B55; /* steel hairline */
+  --color-text:     #FFFFFF;
+  --color-muted:    #879FBA; /* slate mist */
+  --color-subtle:   #CBD2E0; /* ice silver */
+  --color-accent:   #245CD8; /* signal blue */
+  --color-active:   #1D3A7A; /* signal blue at about 40% on the surface */
+  --color-blue:     #8FB2F5; /* signal blue tint: order count */
+  --color-green:    #14D9BB; /* broadcast mint: order value */
+  --color-orange:   #F59E0B; /* caution amber: distance */
+  --color-purple:   #A5B4FC; /* light indigo: freight */
+  --color-seller:   #14D9BB;
+  --color-buyer:    #8FB2F5;
+  --color-alert:    #F87171;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 13px;
 }
@@ -28,9 +36,11 @@ body {
   flex-direction: column;
 }
 
+a { color: inherit; }
+
 /* Leaflet tooltip dark theme */
 .leaflet-tooltip {
-  background: #1a1f2eee !important;
+  background: #1E253Fee !important;
   border: 1px solid var(--color-border) !important;
   color: var(--color-text) !important;
   border-radius: 6px !important;
@@ -48,11 +58,13 @@ button {
   color: var(--color-text);
   padding: 4px 10px;
   font-size: 12px;
+  font-family: inherit;
   transition: background 0.15s;
 }
-button:hover { background: #2d3748; }
+button:hover { background: var(--color-border); }
+button:disabled { color: var(--color-muted); cursor: default; }
 button.active {
-  background: #2b4c7e;
-  border-color: var(--color-blue);
-  color: var(--color-blue);
+  background: var(--color-active);
+  border-color: var(--color-accent);
+  color: var(--color-text);
 }

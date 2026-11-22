@@ -193,8 +193,11 @@ export default function App() {
         borderBottom: '1px solid var(--color-border)',
         display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0, flexWrap: 'wrap',
       }}>
-        <span style={{ fontWeight: 700, fontSize: '15px' }}>🇧🇷 Marketplace trade routes</span>
-        <span style={{ color: 'var(--color-muted)', fontSize: '11px' }} title="Brazilian e-commerce public dataset by Olist, 2016 to 2018">Data: Olist public dataset</span>
+        <a href="https://df1.io" title="Built by DF1" style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="/logo/df1-io-logo-compact-dark.svg" alt="df1.io" width="63" height="26" style={{ display: 'block' }} />
+        </a>
+        <span style={{ fontWeight: 700, fontSize: '15px' }}>Marketplace trade routes</span>
+        <span style={{ color: 'var(--color-muted)', fontSize: '11px' }} title="Brazilian e-commerce public dataset, 2016 to 2018, CC BY-NC-SA 4.0">Data: Olist public dataset</span>
         <span style={{ color: 'var(--color-muted)', fontSize: '12px' }}>
           {loading ? 'Loading…' : error ? `Error: ${error}` : `${cities.length} cities · ${routes.length} routes`}
         </span>
@@ -346,20 +349,20 @@ export default function App() {
                           border: 'none', background: 'transparent', cursor: 'pointer',
                           color: 'var(--color-muted)', padding: '2px 4px', fontSize: 14, lineHeight: 1, borderRadius: 4,
                         }}
-                        onMouseEnter={e => e.currentTarget.style.color = '#fc8181'}
+                        onMouseEnter={e => e.currentTarget.style.color = 'var(--color-alert)'}
                         onMouseLeave={e => e.currentTarget.style.color = 'var(--color-muted)'}
                       >🗑</button>
                     </div>
                     <div style={{ padding: '8px 10px' }}>
                       {(viewMode === 'seller' || viewMode === 'both') && hasSeller && <>
-                        {viewMode === 'both' && <div style={{ color: '#68d391', fontSize: 10, marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.5px' }}>As seller</div>}
+                        {viewMode === 'both' && <div style={{ color: 'var(--color-seller)', fontSize: 10, marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.5px' }}>As seller</div>}
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ color: 'var(--color-muted)' }}>Order count</span><strong>{fmt(c.seller_order_count)}</strong></div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ color: 'var(--color-muted)' }}>Order value</span><span>{fmtR(c.seller_revenue)}</span></div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ color: 'var(--color-muted)' }}>Avg freight</span><span>{fmtR(c.seller_avg_freight)}</span></div>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: 'var(--color-muted)' }}>Avg distance</span><span>{fmt(c.seller_avg_distance)} km</span></div>
                       </>}
                       {(viewMode === 'buyer' || viewMode === 'both') && hasBuyer && <>
-                        {viewMode === 'both' && <div style={{ color: '#63b3ed', fontSize: 10, marginTop: 8, marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.5px' }}>As buyer</div>}
+                        {viewMode === 'both' && <div style={{ color: 'var(--color-buyer)', fontSize: 10, marginTop: 8, marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.5px' }}>As buyer</div>}
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ color: 'var(--color-muted)' }}>Order count</span><strong>{fmt(c.buyer_order_count)}</strong></div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ color: 'var(--color-muted)' }}>Order value</span><span>{fmtR(c.buyer_spend)}</span></div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}><span style={{ color: 'var(--color-muted)' }}>Avg freight</span><span>{fmtR(c.buyer_avg_freight)}</span></div>
@@ -406,7 +409,7 @@ export default function App() {
             </div>
           )}
           {error && (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fc8181' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--color-alert)' }}>
               {error}
             </div>
           )}

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="df1iconBar1" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#245CD8"/>
+      <stop offset="28%" stop-color="#235AD7"/>
+      <stop offset="55%" stop-color="#1948C6"/>
+      <stop offset="82%" stop-color="#0D33B0"/>
+      <stop offset="100%" stop-color="#0C31AC"/>
+    </linearGradient>
+    <linearGradient id="df1iconBar2" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#14D9BB"/>
+      <stop offset="22%" stop-color="#12D2B6"/>
+      <stop offset="50%" stop-color="#18A8C2"/>
+      <stop offset="78%" stop-color="#2179DA"/>
+      <stop offset="100%" stop-color="#2868E3"/>
+    </linearGradient>
+    <linearGradient id="df1iconBar3" x1="0.36" y1="0" x2="0.64" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="16%" stop-color="#F7FFFD"/>
+      <stop offset="34%" stop-color="#B8F4E9"/>
+      <stop offset="55%" stop-color="#6BE6D6"/>
+      <stop offset="78%" stop-color="#35DFCA"/>
+      <stop offset="100%" stop-color="#34DCC5"/>
+    </linearGradient>
+  </defs>
+  <g id="Icon">
+    <rect x="2.00" y="2.00" width="508.00" height="508.00" rx="95.56" ry="95.56" fill="#1E253F" stroke="#2F3B55" stroke-width="3.00"/>
+    <rect x="72.42" y="229.59" width="100.59" height="218.79" rx="50.30" ry="50.30" fill="url(#df1iconBar1)"/>
+    <rect x="205.70" y="146.60" width="100.59" height="301.78" rx="50.30" ry="50.30" fill="url(#df1iconBar2)"/>
+    <rect x="338.99" y="63.61" width="100.59" height="384.77" rx="50.30" ry="50.30" fill="url(#df1iconBar3)"/>
+  </g>
+</svg>

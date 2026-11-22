@@ -267,20 +267,20 @@ export default function BrazilMap({
                   <Tooltip direction="top" permanent={false}>
                     <div style={{ fontWeight: 700 }}>{c.city} ({c.state})</div>
                     {(viewMode === 'seller' || viewMode === 'both') && hasSeller && <>
-                      {viewMode === 'both' && <div style={{ color: '#68d391', fontSize: 11, marginTop: 4 }}>As seller</div>}
+                      {viewMode === 'both' && <div style={{ color: 'var(--color-seller)', fontSize: 11, marginTop: 4 }}>As seller</div>}
                       <div>Order count: <strong>{fmt(c.seller_order_count)}</strong></div>
                       <div>Order value: {fmtR(c.seller_revenue)}</div>
                       <div>Avg freight: {fmtR(c.seller_avg_freight)}</div>
                       <div>Avg distance: {fmt(c.seller_avg_distance)} km</div>
                     </>}
                     {(viewMode === 'buyer' || viewMode === 'both') && hasBuyer && <>
-                      {viewMode === 'both' && <div style={{ color: '#63b3ed', fontSize: 11, marginTop: 4 }}>As buyer</div>}
+                      {viewMode === 'both' && <div style={{ color: 'var(--color-buyer)', fontSize: 11, marginTop: 4 }}>As buyer</div>}
                       <div>Order count: <strong>{fmt(c.buyer_order_count)}</strong></div>
                       <div>Order value: {fmtR(c.buyer_spend)}</div>
                       <div>Avg freight: {fmtR(c.buyer_avg_freight)}</div>
                       <div>Avg distance: {fmt(c.buyer_avg_distance)} km</div>
                     </>}
-                    <div style={{ color: '#a0aec0', fontSize: 11, marginTop: 3 }}>
+                    <div style={{ color: 'var(--color-subtle)', fontSize: 11, marginTop: 3 }}>
                       {isShowAllActive ? 'Click to select this city' : isSelected ? 'Click to deselect' : 'Click to select'}
                     </div>
                   </Tooltip>
