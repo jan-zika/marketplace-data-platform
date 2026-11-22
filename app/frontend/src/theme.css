@@ -68,3 +68,17 @@ button.active {
   border-color: var(--color-accent);
   color: var(--color-text);
 }
+
+/* ── Phones and tablets (below 1024 px, same breakpoint as useIsMobile.js) ──
+   One column that scrolls as a page: header, map, city panel. Desktop rules above stay untouched. */
+@media (max-width: 1023.98px) {
+  body, #root { height: auto; min-height: 100%; overflow: visible; }
+  h1 { font: inherit; }
+
+  /* Map plus its legend: most of the first screen, leaving the panel actions in view */
+  .map-mobile { height: 62vh; height: clamp(320px, 62svh, 600px); display: flex; flex-direction: column; }
+
+  /* Leaflet controls: 44 px tap targets, text at least 12 px */
+  .leaflet-touch .leaflet-bar a { width: 44px; height: 44px; line-height: 44px; font-size: 22px; }
+  .leaflet-container .leaflet-control-attribution { font-size: 12px; line-height: 1.4; }
+}

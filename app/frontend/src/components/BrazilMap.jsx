@@ -15,6 +15,8 @@ const ATTR = 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>, HERE, Garmi
 
 const BRAZIL_CENTER = [-14.2, -51.9]
 const BRAZIL_ZOOM   = 4
+// Phones fit the country to the map width instead of using the fixed desktop zoom.
+const BRAZIL_BOUNDS = [[-33.8, -74.0], [5.3, -34.8]]
 
 // Normalised 0→1 → HSL gradient blue→red
 function intensityColor(norm) {
@@ -83,7 +85,7 @@ const fmtR = (n) => n != null
 
 export default function BrazilMap({
   cities, routes, selectedKeys, selectedOrder, onCityClick,
-  activeLayer, showAllRoutes, topRoutes, routesPerCity, onRoutesShown, onVisibleRoutes, viewMode, isShowAllActive,
+  activeLayer, showAllRoutes, topRoutes, routesPerCity, onRoutesShown, onVisibleRoutes, viewMode, isShowAllActive, mobile = false,
 }) {
   const [darkMode, setDarkMode] = useState(true)
   const mapRef = useRef(null)
@@ -186,8 +188,9 @@ export default function BrazilMap({
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div ref={mapRef} style={{ flex: 1, position: 'relative' }}>
         <MapContainer
-          center={BRAZIL_CENTER}
-          zoom={BRAZIL_ZOOM}
+          {...(mobile
+            ? { bounds: BRAZIL_BOUNDS, boundsOptions: { padding: [4, 4] }, zoomSnap: 0.25 }
+            : { center: BRAZIL_CENTER, zoom: BRAZIL_ZOOM })}
           style={{ height: '100%', width: '100%' }}
           boxZoom={false}
         >
@@ -245,7 +248,7 @@ export default function BrazilMap({
               const isSelected = selectedKeys.has(key)
               const isDimmed   = anySelected && !isSelected
               const val        = c[activeLayer] ?? 0
-              const r          = cityRadius(val, sizeMin, sizeMax)
+              const r          = mobile ? Math.max(6, cityRadius(val, sizeMin, sizeMax)) : cityRadius(val, sizeMin, sizeMax)
               const fill       = cityColor(c)
               const hasSeller  = c.seller_order_count > 0
               const hasBuyer   = c.buyer_order_count  > 0
@@ -267,21 +270,21 @@ export default function BrazilMap({
                   <Tooltip direction="top" permanent={false}>
                     <div style={{ fontWeight: 700 }}>{c.city} ({c.state})</div>
                     {(viewMode === 'seller' || viewMode === 'both') && hasSeller && <>
-                      {viewMode === 'both' && <div style={{ color: 'var(--color-seller)', fontSize: 11, marginTop: 4 }}>As seller</div>}
+                      {viewMode === 'both' && <div style={{ color: 'var(--color-seller)', fontSize: 12, marginTop: 4 }}>As seller</div>}
                       <div>Order count: <strong>{fmt(c.seller_order_count)}</strong></div>
                       <div>Order value: {fmtR(c.seller_revenue)}</div>
                       <div>Avg freight: {fmtR(c.seller_avg_freight)}</div>
                       <div>Avg distance: {fmt(c.seller_avg_distance)} km</div>
                     </>}
                     {(viewMode === 'buyer' || viewMode === 'both') && hasBuyer && <>
-                      {viewMode === 'both' && <div style={{ color: 'var(--color-buyer)', fontSize: 11, marginTop: 4 }}>As buyer</div>}
+                      {viewMode === 'both' && <div style={{ color: 'var(--color-buyer)', fontSize: 12, marginTop: 4 }}>As buyer</div>}
                       <div>Order count: <strong>{fmt(c.buyer_order_count)}</strong></div>
                       <div>Order value: {fmtR(c.buyer_spend)}</div>
                       <div>Avg freight: {fmtR(c.buyer_avg_freight)}</div>
                       <div>Avg distance: {fmt(c.buyer_avg_distance)} km</div>
                     </>}
-                    <div style={{ color: 'var(--color-subtle)', fontSize: 11, marginTop: 3 }}>
-                      {isShowAllActive ? 'Click to select this city' : isSelected ? 'Click to deselect' : 'Click to select'}
+                    <div style={{ color: 'var(--color-subtle)', fontSize: 12, marginTop: 3 }}>
+                      {(mobile ? 'Tap' : 'Click') + (isShowAllActive ? ' to select this city' : isSelected ? ' to deselect' : ' to select')}
                     </div>
                   </Tooltip>
                 </CircleMarker>
@@ -294,12 +297,13 @@ export default function BrazilMap({
 
       {/* Legend bar */}
       <div style={{
-        display: 'flex', gap: '16px', padding: '5px 12px',
+        display: 'flex', gap: mobile ? '8px 12px' : '16px', padding: mobile ? '0 16px' : '5px 12px',
         background: 'var(--color-surface)', borderTop: '1px solid var(--color-border)',
-        fontSize: '11px', alignItems: 'center', flexShrink: 0, flexWrap: 'wrap',
+        fontSize: mobile ? '12px' : '11px', alignItems: 'center', flexShrink: 0, flexWrap: 'wrap',
+        ...(mobile ? { minHeight: 52 } : null),
       }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ color: 'var(--color-muted)' }}>Color (circles &amp; routes):</span>
+          <span style={{ color: 'var(--color-muted)' }}>{mobile ? 'Color:' : 'Color (circles & routes):'}</span>
           <span style={{
             display: 'inline-block', width: '60px', height: '10px', borderRadius: '3px',
             background: 'linear-gradient(to right, hsl(220,80%,45%), hsl(110,90%,50%), hsl(0,100%,50%))',
@@ -307,7 +311,7 @@ export default function BrazilMap({
           <span style={{ color: 'var(--color-muted)' }}>{activeLayer.replace(/_/g, ' ')} low→high</span>
         </span>
         <span style={{ marginLeft: 'auto' }}>
-          <button onClick={() => setDarkMode(d => !d)} style={{ fontSize: '11px', padding: '2px 8px' }}>
+          <button onClick={() => setDarkMode(d => !d)} style={mobile ? { fontSize: '13px', padding: '0 12px', minHeight: 44 } : { fontSize: '11px', padding: '2px 8px' }}>
             {darkMode ? '☀ Light' : '🌙 Dark'}
           </button>
         </span>
